@@ -30,11 +30,10 @@ def get_whisper():
         _whisper_model = whisper.load_model("tiny")
     return _whisper_model
 
-
 # --------------------------------------------------
 # Public API
 # --------------------------------------------------
-def extract(path: Path) -> str:
+def extract(path: Path, *, skip_ocr: bool = False, skip_video: bool = False) -> str:
     """
     Extract text from a file of various formats.
     Returns extracted text or empty string on failure.
@@ -52,9 +51,13 @@ def extract(path: Path) -> str:
             return _extract_office(path)
 
         if ext in [".png", ".jpg", ".jpeg", ".tiff"]:
+            if skip_ocr:
+                return ""
             return _extract_image(path)
 
         if ext in [".mp4", ".mov", ".mkv", ".avi"]:
+            if skip_video:
+                return ""
             return _extract_video_audio(path)
 
         if ext in [".fig", ".xd"]:

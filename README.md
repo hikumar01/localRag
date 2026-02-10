@@ -46,6 +46,8 @@ chmod -R a-w /absolute/path/to/your/projects
 7️⃣ How YOU use it
 First time
 python -m src.cli ingest
+Optional fast first pass (no OCR/video)
+python -m src.cli ingest --skip-ocr --skip-video
 python -m src.cli cluster
 python -m src.cli summarize
 python -m src.cli confidence
