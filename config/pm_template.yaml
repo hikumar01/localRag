@@ -1,0 +1,15 @@
+sections:
+  - overview
+  - problem_statement
+  - users
+  - key_flows
+  - features
+  - metrics
+  - technical_architecture
+  - dependencies
+  - risks_and_assumptions
+  - decisions
+  - open_questions
+
+tone: technical_product_manager
+verbosity: high
