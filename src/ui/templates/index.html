@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Project Intel</h1>
+
+<h3>Projects</h3>
+<ul>
+{% for p in projects %}
+  <li><a href="/project/{{ p }}">{{ p }}</a></li>
+{% endfor %}
+</ul>
+
+<hr>
+
+<h3>Ask across all projects</h3>
+<form method="post" action="/rag">
+  <input name="q" style="width:60%">
+  <button>Ask</button>
+</form>
+
+</body>
+</html>
