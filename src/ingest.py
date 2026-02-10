@@ -23,9 +23,11 @@ def run(*, skip_ocr: bool = False, skip_video: bool = False, workers: Optional[i
     to_process: list[tuple[str, str]] = []
 
     all_files = [p for p in INPUT.rglob("*") if p.is_file()]
-    for f in tqdm(all_files, desc="Scan", unit="file"):
+    scan_bar = tqdm(all_files, desc="Scan", unit="file")
+    for f in scan_bar:
         if not f.is_file():
             continue
+        scan_bar.set_postfix_str(f.name)
 
         ext = f.suffix.lower()
         if skip_ocr and ext in IMAGE_EXTS:
@@ -50,6 +52,7 @@ def run(*, skip_ocr: bool = False, skip_video: bool = False, workers: Optional[i
         with tqdm(total=len(futures), desc="Extract", unit="file") as pbar:
             for fut in as_completed(futures):
                 path_str, h = futures[fut]
+                pbar.set_postfix_str(Path(path_str).name)
                 _path_str, text = fut.result()
                 out = (OUT / Path(path_str).relative_to(INPUT)).with_suffix(".txt")
                 out.parent.mkdir(parents=True, exist_ok=True)
