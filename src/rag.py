@@ -1,5 +1,6 @@
 import ollama, chromadb
 from chromadb.config import Settings
+from typing import Optional
 from pathlib import Path
 
 # Persistent Chroma DB
@@ -29,7 +30,8 @@ def index():
 # RAG
 # -----------------------
 
-def ask(question: str, project_id: str | None = None) -> str:
+# def ask(question: str, project_id: str | None = None) -> str:
+def ask(question: str, project_id: Optional[str] = None) -> str:
     if project_id:
         col = client.get_or_create_collection(project_id)
 
@@ -72,11 +74,3 @@ Answer clearly and concisely in markdown.
     )
 
     return out["response"]
-
-
-# -----------------------
-# Debug / fallback
-# -----------------------
-
-def ask2(question: str, project_id: str | None = None) -> str:
-    return f"[PROJECT {project_id}] You asked: {question}"
