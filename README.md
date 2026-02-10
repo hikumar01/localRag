@@ -61,6 +61,10 @@ uvicorn src.ui.api:app --reload
 
 pip install -r requirements.txt && python -m src.cli ingest && python -m src.cli cluster && python -m src.cli summarize && python -m src.cli confidence && python -m src.cli timeline && python -m src.cli deps && python -m src.cli mermaid && python -m src.cli roadmap && python -m src.cli risks && python -m src.cli rag && uvicorn src.ui.api:app --reload
 
+pip install -r requirements.txt && python -m src.cli ingest && uvicorn src.ui.api:app --reload
+
+python -m src.cli ingest && uvicorn src.ui.api:app --reload
+
 
 Every update
 python -m src.cli ingest
